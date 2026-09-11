@@ -192,9 +192,9 @@ TEST(VersionV1Test, LessThanOrEqualOperator)
     EXPECT_TRUE(VersionV1("1.2.3") <= VersionV1("1.2.4"));
     EXPECT_FALSE(VersionV1("1.2.4") <= VersionV1("1.2.3"));
 
-    // 1.2.3 和 1.2.3.0 在 <= 下相等（value_or(0)）
-    EXPECT_TRUE(VersionV1("1.2.3") <= VersionV1("1.2.3.0"));
-    EXPECT_TRUE(VersionV1("1.2.3.0") <= VersionV1("1.2.3"));
+    // tweak 存在性不同：== 和 < 均为 false，所以 <= 也不成立
+    EXPECT_FALSE(VersionV1("1.2.3") <= VersionV1("1.2.3.0"));
+    EXPECT_FALSE(VersionV1("1.2.3.0") <= VersionV1("1.2.3"));
 }
 
 // 测试 >= 运算符
@@ -204,9 +204,9 @@ TEST(VersionV1Test, GreaterThanOrEqualOperator)
     EXPECT_TRUE(VersionV1("1.2.4") >= VersionV1("1.2.3"));
     EXPECT_FALSE(VersionV1("1.2.3") >= VersionV1("1.2.4"));
 
-    // 1.2.3 和 1.2.3.0 在 >= 下相等
-    EXPECT_TRUE(VersionV1("1.2.3") >= VersionV1("1.2.3.0"));
-    EXPECT_TRUE(VersionV1("1.2.3.0") >= VersionV1("1.2.3"));
+    // tweak 存在性不同：== 和 > 均为 false，所以 >= 也不成立
+    EXPECT_FALSE(VersionV1("1.2.3") >= VersionV1("1.2.3.0"));
+    EXPECT_FALSE(VersionV1("1.2.3.0") >= VersionV1("1.2.3"));
 }
 
 // 测试与 VersionV2 的 == 运算符
